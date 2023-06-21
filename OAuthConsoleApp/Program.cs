@@ -65,7 +65,7 @@ namespace OAuthConsoleApp
             Console.ReadKey();
             return 0;
         }
-
+        /*
         // ref http://stackoverflow.com/a/3978040
         public static int GetRandomUnusedPort()
         {
@@ -175,7 +175,7 @@ namespace OAuthConsoleApp
             //tokenRequest.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("text/html"));
             //tokenRequest.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/xhtml+xml"));
             //tokenRequest.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/xml;q=0.9"));
-            //tokenRequest.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("*/*;q=0.8"));
+            //tokenRequest.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("* /*;q=0.8"));
 
             try
             {
@@ -219,7 +219,7 @@ namespace OAuthConsoleApp
             //userInfoRequest.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("text/html"));
             //userInfoRequest.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/xhtml+xml"));
             //userInfoRequest.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/xml;q=0.9"));
-            //userInfoRequest.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("*/*;q=0.8"));
+            //userInfoRequest.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("* /*;q=0.8"));
 
             // gets the response
             var userInfoResponse = await userInfoRequest.GetAsync(new Uri(userInfoRequestUri));
@@ -295,5 +295,6 @@ namespace OAuthConsoleApp
         {
             SetForegroundWindow(GetConsoleWindow());
         }
+*/
     }
 }
