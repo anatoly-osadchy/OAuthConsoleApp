@@ -32,11 +32,7 @@ namespace OAuthConsoleApp
     {
         static async Task<int> Main(string[] args)
         {
-            //if (args.Length != 2)
-            //{
-            //    Console.WriteLine("Required command line arguments: client-id client-secret");
-            //    return 1;
-            //}
+            // ANOA: credentials of my test registered app "MyOAuthTestApp"
             string clientId = "1084886105350-60j8b8mgifkpvet5t798io42dtcgmgeb.apps.googleusercontent.com";
             string clientSecret = "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";
 
@@ -47,7 +43,23 @@ namespace OAuthConsoleApp
             Console.WriteLine("Press any key to sign in...");
             //Console.ReadKey();
 
-            await DoOAuthAsync(clientId, clientSecret);
+            var authHelper = new OAuthHelper
+            {
+                RequestCodeUrl = new ("https://accounts.google.com/o/oauth2/v2/auth"),
+                RequestTokenUrl = new ("https://www.googleapis.com/oauth2/v4/token")
+            };
+
+            authHelper.RequestCodeParams.Scope.Value = "openid https://www.googleapis.com/auth/userinfo.email";
+
+            authHelper.RequestCodeParams.ClientId.Value = clientId;
+            authHelper.RequestTokenParams.ClientId.Value = clientId;
+            authHelper.RequestTokenParams.ClientSecret.Value = clientSecret;
+
+            var token = await authHelper.Run();
+            Console.WriteLine("AccessToken:");
+            Console.WriteLine(token);
+
+            //await DoOAuthAsync(clientId, clientSecret);
 
             Console.WriteLine("Press any key to exit...");
             Console.ReadKey();

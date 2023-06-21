@@ -85,8 +85,8 @@ namespace OAuthConsoleApp
         public OAuthRequestCodeParams RequestCodeParams { get; } = new();
         public OAuthRequestTokenParams RequestTokenParams { get; } = new();
 
-        public Uri RequestCodeUrl { get; set; } = new("https://www.googleapis.com/oauth2/v4/token");
-        public Uri RequestTokenUrl { get; set; } = new("https://accounts.google.com/o/oauth2/v2/auth");
+        public Uri RequestCodeUrl { get; set; }// = new("https://accounts.google.com/o/oauth2/v2/auth");
+        public Uri RequestTokenUrl { get; set; }// = new("https://www.googleapis.com/oauth2/v4/token");
         public string FinishHtmlCode { get; set; } = "<html><head><meta http-equiv='refresh' content='10;url=https://google.com'></head><body>Please return to the app.</body></html>";
 
         public async Task<OAuthToken> Run()
@@ -178,6 +178,9 @@ namespace OAuthConsoleApp
         {
             // Creates a redirect URI using an available port on the loopback address.
             string redirectUri = $"http://{IPAddress.Loopback}:{GetRandomUnusedPort()}/";
+
+            RequestCodeParams.RedirectUri.Value = redirectUri;
+            RequestTokenParams.RedirectUri.Value = redirectUri;
 
             // Creates an HttpListener to listen for requests on that redirect URI.
             var http = new HttpListener();
